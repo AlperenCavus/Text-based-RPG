@@ -1,10 +1,10 @@
 package textBasedRPG;
 
-public interface Classes {
+public abstract class GameClasses {
 
-	void attack();
-	void defense();
-	void flee();
-	
+	double hp,maxHP,mana,rage,energy,durability,speed;
+	String defaultWeapons;
+	String[] spells;
+	int str,dex,agi,intellect,points;
 	
 }
