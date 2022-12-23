@@ -9,9 +9,11 @@ public class Mage extends GameClasses implements Classes {
 	private int str=10;
 	private int agi=10;
 	private int dex=10;
-	Weapon staff= new Weapon_Staff(); 
-	Mage(){
-		
+	
+	Mage(String name){
+		this.name=name;
+		Weapon staff= new Weapon_Staff(); 
+		this.setDefaultWeapons(staff);
 		}
 	
 	@Override

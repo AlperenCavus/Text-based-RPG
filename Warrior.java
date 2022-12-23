@@ -9,9 +9,11 @@ public class Warrior extends GameClasses implements Classes {
 	private int str=12;
 	private int agi=10;
 	private int dex=10;
-	Weapon sword= new Weapon_Sword();
-	Warrior(){
-		
+	
+	Warrior(String name	){
+		this.name=name;
+		Weapon sword= new Weapon_Sword();
+		this.setDefaultWeapons(sword);
 		}
 	@Override
 	public void attack() {

@@ -7,6 +7,7 @@ public abstract class GameClasses {
 	protected Weapon defaultWeapons;
 	protected String[] spells;
 	protected int str,dex,agi,intellect,points;
+	protected String name;
 	
 	public double getDamage() {
 		return damage+getDefaultWeapons().damage;

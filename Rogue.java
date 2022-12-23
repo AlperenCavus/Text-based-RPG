@@ -9,9 +9,11 @@ public class Rogue extends GameClasses implements Classes {
 	private int str=10;
 	private int agi=12;
 	private int dex=10;
-	Weapon dagger= new Weapon_Dagger();
-	Rogue(){
-		
+	
+	Rogue(String name){
+		this.name=name;
+		Weapon dagger= new Weapon_Dagger();
+		this.setDefaultWeapons(dagger);
 		}
 	@Override
 	public void attack() {
