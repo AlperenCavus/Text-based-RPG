@@ -11,14 +11,15 @@ player.getName()+", welcome to the repair store! Would you like to repair your w
 public void choice() {
 	System.out.println("1-Yes 2-No");
 	do {
-	  choice=scan.nextInt();
-	  if(choice!=1 || choice!=2) {
-		  System.out.println("Please enter a valid input");
-		  continue;
-	  }
-		  
-	 }
-	 while(choice==1 || choice!=2);
+		
+		   choice=scan.nextInt();
+		  if(choice!=1 && choice!=2) {
+			  System.out.println("Please enter a valid input");
+			  
+		  }
+			  
+		 }
+		 while(choice!=1 && choice!=2);
 	if(choice==2) {
 		System.out.println("See you soon then!");
 	}
