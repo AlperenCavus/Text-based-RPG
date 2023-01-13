@@ -2,14 +2,43 @@ package textBasedRPG;
 
 public class Zombie extends Creatures implements Classes {
 	private String name;
-	private double maxHP;
-	private int dex;
-	private int damage;
+	private double maxHP=11.0;
+	private double dex=8;
+	private double damage=2;
+	
 	public Zombie(String name){
 		this.name=name;
-		this.maxHP=11.0;
-		this.dex=8;
-		this.damage=5;
+		
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getMaxHP() {
+		return maxHP;
+	}
+	public void setMaxHP(double maxHP) {
+		this.maxHP = maxHP;
+	}
+	public double getDex() {
+		return dex;
+	}
+	public void setDex(double dex) {
+		this.dex = dex;
+	}
+	public void setDamage(double damage) {
+		this.damage = damage;
+	}
+	public void setDex(int dex) {
+		this.dex = dex;
+	}
+	public double getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 	@Override
 	public double attack() {
@@ -18,10 +47,15 @@ public class Zombie extends Creatures implements Classes {
 		if(attackChance>=65) 
 			System.out.println(this.name+"'s given damage:"+this.damage); 
 		else {
+			System.out.println("It could not hit you!");
 			return 0;
 		}
 		return damage;
 		
+	}
+	@Override
+	public double fight() {
+		return this.attack();
 	}
 
 

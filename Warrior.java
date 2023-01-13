@@ -1,15 +1,34 @@
 package textBasedRPG;
 
 public class Warrior extends GameClasses implements Classes {
-	private double maxHP;
-	private int dex;
-	private int damage;
+	
+
+	private double maxHP=20.0;
+	private double dex=10;
+	private double damage=5;
+	public double getMaxHP() {
+		return maxHP;
+	}
+	public void setMaxHP(double maxHP) {
+		this.maxHP = maxHP;
+	}
+	public double getDex() {
+		return dex;
+	}
+	public void setDex(int dex) {
+		this.dex = dex;
+	}
+	public double getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
 	
 	Warrior(String name	){
 		this.name=name;
-		this.maxHP=20.0;
-		this.dex=10;
-		this.damage=5;
+		
 		}
 	@Override
 	public double attack() {
@@ -22,6 +41,10 @@ public class Warrior extends GameClasses implements Classes {
 		else 
 			System.out.println("You couldn't hit your target!");
 		return this.damage;
+	}
+	@Override
+	public double fight() {
+		return this.attack();
 	}
 
 }

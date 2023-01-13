@@ -8,7 +8,8 @@ public class Gameplay  {
 	Creatures creature;
 	GameClasses player;
 	public Gameplay(GameClasses player){
-		this.player=player;
+		 this.player=player;
+		
 	}
 
 	Scanner scan= new Scanner(System.in);
@@ -22,81 +23,104 @@ public class Gameplay  {
 				System.out.println("Which direction do you want to go? \n1-North \n2-South \n3-East \n4-West");
 				int choice=scan.nextInt();
 				i++;
-
+				
 			}
 			Random r=new Random();
 			int generate2=random.nextInt(3)+1;
 			switch(generate2) {
 			case 1:
-				this.creature=new Orc("Orc");
+				 creature=new Orc("Orc");
 				break;
 			case 2:
-				this.creature=new Demon("Demon");
+				 creature=new Demon("Demon");
 				break;
 			case 3:
-				this.creature=new Zombie("Zombie");
+				 creature=new Zombie("Zombie");
 				break;
 			}
 
-			this.fight(this.creature,this.player);
+			 fight(creature,player);
+			 
+			 
+			 
 		}
 	}
 
-	public void fight(GameClasses creature,GameClasses player) throws InterruptedException {
+	public int fight(Creatures creature,GameClasses player) throws InterruptedException {
+		//returns 1 if player wins otherwise returns 0.
 		System.out.println("You have encountered a creature!");
-		if(creature.dex>player.dex) {
+		System.out.println("Your dex:"+player.getDex()+"        " +creature.getName()+"'s dex:"+creature.getDex());
+		
+		if(creature.getDex()>player.getDex()) {
 
-			System.out.println(creature.name+" will start first!");
+			System.out.println(creature.getName()+" will start first!");
+			status(creature,player);
 
 		}
-		else if(player.dex>creature.dex) {
-			System.out.println(player.name+" will start first");
-
+		else if(player.getDex()>creature.getDex()) {
+			System.out.println(player.getName()+" will start first");
+			status(creature,player);
 		}
 		else {
-			System.out.println(player.name+" will start first");
+			System.out.println(player.getName()+" will start first");
+			status(creature,player);
 		}
 
 		TimeUnit.SECONDS.sleep(3);
-		while(this.creature.maxHP>=0 && this.player.maxHP>=0) {
-			if(this.creature.dex>this.player.dex) {
-				while(this.creature.maxHP>=0 && this.player.maxHP>=0) {
-					this.player.setMaxHP(this.player.getMaxHP()-this.creature.attack());
-					if(this.player.getMaxHP()<=0) {
-						break;
+		while( creature.getMaxHP()>=0 &&  player.getMaxHP()>=0) {
+			TimeUnit.SECONDS.sleep(1);
+			if( creature.getDex()> player.getDex()) {
+				
+				while( creature.getMaxHP()>=0 &&  player.getMaxHP()>=0) {
+					TimeUnit.SECONDS.sleep(1);
+					 player.setMaxHP( player.getMaxHP()- creature.fight());
+					if( player.getMaxHP()<=0) {
+						System.out.println("You died! Game is over!");
+						status(creature,player);
+						return 0;
 					}
-					this.creature.setMaxHP(this.creature.getMaxHP()-this.player.attack());
-					status(this.player,this.creature);
+					 creature.setMaxHP( creature.getMaxHP()- player.fight());
+					 status(creature,player);
 				}
 
 			}
-			else if(this.player.dex>this.creature.dex) {
+			else if( player.getDex()> creature.getDex()) {
 
-				while(this.creature.maxHP>=0 && this.player.maxHP>=0) {
-					this.creature.setMaxHP(this.creature.getMaxHP()-this.player.attack());
-					if(this.creature.getMaxHP()<=0) {
-						break;
+				while(creature.getMaxHP()>=0 && player.getMaxHP()>=0) {
+					TimeUnit.SECONDS.sleep(1);
+					creature.setMaxHP(creature.getMaxHP()-player.fight());
+					if(creature.getMaxHP()<=0) {
+						System.out.println("The creature is dead. You beat it!");
+						status(creature,player);
+						return 1;
 					}
-					this.player.setMaxHP(this.player.getMaxHP()-this.creature.attack());
-					status(this.player,this.creature);
+					player.setMaxHP(player.getMaxHP()-creature.fight());
+					status(creature,player);
 				}
 			}
 			else {
-				while(this.creature.maxHP>=0 && this.player.maxHP>=0) {
-					this.creature.setMaxHP(this.creature.getMaxHP()-this.player.attack());
-					if(this.creature.getMaxHP()<=0) {
-						break;
+				while(creature.getMaxHP()>=0 && player.getMaxHP()>=0) {
+					TimeUnit.SECONDS.sleep(1);
+					creature.setMaxHP(creature.getMaxHP()-player.fight());
+					if(creature.getMaxHP()<=0) {
+						System.out.println("The creature is dead. You beat it!");
+						status(creature,player);
+						return 1;
 					}
-					this.player.setMaxHP(this.player.getMaxHP()-this.creature.attack());
-					status(this.player,this.creature);
+					player.setMaxHP(player.getMaxHP()-creature.fight());
+					status(creature,player);
 				}
 
 			}
 		}
+		return 1;
 	}
-	public void status(GameClasses creature,GameClasses player){
+	public void status(Creatures creature,GameClasses player){
 		System.out.println("Your health:"+player.getMaxHP());
-		System.out.println(creature.name+"'s health:"+player.getMaxHP());
+		System.out.println(creature.getName()+"'s health:"+creature.getMaxHP());
+	}
+	public int fightCheck(Creatures creature,GameClasses player) {
+		
 	}
 
 
