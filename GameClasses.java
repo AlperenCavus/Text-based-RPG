@@ -1,6 +1,6 @@
 package textBasedRPG;
 import java.util.*;
-
+//GameClasses class is abstract because we don't want to create any object from this class. This class stands for only behaving as a super class.
 public abstract class GameClasses implements Classes{
 
 	protected double maxHP,damage,dex;
